@@ -1,0 +1,187 @@
+/* ...replaces existing App.css... */
+:root{
+  --bg-light: #f9f9f9;
+  --text-light: #222;
+  --container-light: #ffffff;
+  --input-light: #f1f1f1;
+  --muted-light: rgba(0,0,0,0.06);
+  --shadow-light: rgba(0,0,0,0.12);
+
+  --bg-dark: #1e1e1e;
+  --text-dark: #ffffff;
+  --container-dark: #242424;
+  --input-dark: #2b2b2b;
+  --muted-dark: rgba(255,255,255,0.03);
+  --shadow-dark: rgba(0,0,0,0.6);
+}
+
+/* Reset & base - center the app vertically/horizontally */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  transition: background .22s ease, color .22s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-light); /* default */
+  color: var(--text-light);
+}
+
+/* body-level theme classes (set these from JS) */
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/* App wrapper (keeps layout predictable) */
+.app {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 32px; /* keeps distance on small screens */
+  box-sizing: border-box;
+}
+
+/* Container - centered card */
+.container {
+  max-width: 720px;
+  width: min(720px, calc(100% - 48px));
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  text-align: left;
+  transition: background .22s ease, box-shadow .22s ease, color .22s ease;
+}
+
+/* theme-specific container backgrounds & shadows */
+body.light .container, .app.light .container {
+  background: var(--container-light);
+  box-shadow: 0 8px 22px var(--shadow-light);
+  color: var(--text-light);
+}
+
+body.dark .container, .app.dark .container {
+  background: var(--container-dark);
+  box-shadow: 0 8px 30px var(--shadow-dark);
+  color: var(--text-dark);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Toggle button */
+.toggle-btn {
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+
+/* theme-specific toggle look */
+body.light .toggle-btn, .app.light .toggle-btn {
+  background: #f8f8f8;
+  color: var(--text-light);
+  border-color: rgba(0,0,0,0.08);
+}
+
+body.dark .toggle-btn, .app.dark .toggle-btn {
+  background: rgba(255,255,255,0.04);
+  color: var(--text-dark);
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* Inputs */
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  transition: background .18s ease, border-color .12s ease, color .12s ease;
+}
+
+/* theme-specific input backgrounds and text colors */
+body.light .input-area input, .app.light .input-area input {
+  background: var(--input-light);
+  color: var(--text-light);
+  border-color: rgba(0,0,0,0.06);
+}
+
+body.dark .input-area input, .app.dark .input-area input {
+  background: var(--input-dark);
+  color: var(--text-dark);
+  border-color: rgba(255,255,255,0.03);
+}
+
+.input-area input::placeholder {
+  opacity: 0.7;
+}
+
+/* Add button */
+.input-area button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Task list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: background .15s ease, color .15s ease;
+}
+
+/* theme-specific list item backgrounds */
+body.light li, .app.light li {
+  background: var(--muted-light);
+  color: var(--text-light);
+}
+
+body.dark li, .app.dark li {
+  background: var(--muted-dark);
+  color: var(--text-dark);
+}
+
+/* small responsive tweak */
+@media (max-width:480px) {
+  .container { padding: 18px; width: calc(100% - 24px); }
+  .input-area { flex-direction: column; }
+  .input-area button { width: 100%; }
+}
